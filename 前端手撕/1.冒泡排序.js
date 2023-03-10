@@ -12,6 +12,7 @@ function bubbleSort(nums) {
     }
     // console.log(i); //区间就是[0,length-1]
   }
+
   return nums;
 }
 
