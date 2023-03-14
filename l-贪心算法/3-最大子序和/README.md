@@ -9,3 +9,24 @@
 解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
 
 ## 暴力解法
+
+## 思路
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function (nums) {
+  let result = -Infinity;
+  let count = 0;
+  for (let i = 0; i < nums.length; i++) {
+    count += nums[i];
+    result = result < count ? count : result;
+    if (count < 0) {
+      count = 0;
+    }
+  }
+  return result;
+};
+```
