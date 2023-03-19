@@ -54,6 +54,57 @@ if (Math.abs(S) > sum) return 0; //此时没有方案
 ```
 
 1. 确定 dp 数组以及下标的含义
-   dp[j]表示:填满 j 包括(j)这么大容积的包，dp[j]方法
+   **dp[j]表示:填满 j 包括(j)这么大容积的包，dp[j]方法**
 
 2. 确定递归公式
+   例如：dp[j]，j 为 5，
+
+已经有一个 1（nums[i]） 的话，有 dp[4]种方法 凑成 容量为 5 的背包。
+已经有一个 2（nums[i]） 的话，有 dp[3]种方法 凑成 容量为 5 的背包。
+已经有一个 3（nums[i]） 的话，有 dp[2]中方法 凑成 容量为 5 的背包
+已经有一个 4（nums[i]） 的话，有 dp[1]中方法 凑成 容量为 5 的背包
+已经有一个 5 （nums[i]）的话，有 dp[0]中方法 凑成 容量为 5 的背包
+
+```js
+dp[j] += dp[j - nums[i]];
+```
+
+3. dp 数组如何初始化
+   如果数组[0] ，target = 0，那么 bagSize = (target + sum) / 2 = 0。 dp[0]也应该是 1， 也就是说给数组里的元素 0 前面无论放加法还是减法，都是 1 种方法。
+
+所以本题我们应该初始化 dp[0] 为 1
+
+4. 老样子
+
+5. 举例推导 dp 数组
+   输入：nums: [1, 1, 1, 1, 1], S: 3
+
+bagSize = (S + sum) / 2 = (3 + 5) / 2 = 4
+
+![这是图片](./1.jpg)
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var findTargetSumWays = function (nums, target) {
+  let sum = nums.reduce((p, v) => p + v);
+  if (Math.abs(target) > sum) return 0;
+  if ((sum + target) % 2 == 1) return 0;
+  let bagSize = (sum + target) / 2;
+  let dp = new Array(bagSize + 1).fill(0);
+  dp[0] = 1;
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = bagSize; j >= nums[i]; j--) {
+      dp[j] += dp[j - nums[i]];
+    }
+  }
+  return dp[bagSize];
+};
+```
+
+## 一般递推公式
+
+**dp[j] += dp[j - nums[i]]**

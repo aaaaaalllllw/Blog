@@ -75,3 +75,31 @@ var canPartition = function (nums) {
   return dp[target] === target;
 };
 ```
+
+只要背包能满足 target 就成功
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var canPartition = function (nums) {
+  //1,.dp,j是背包容量，dp[j]是value，最后是要等于target
+  //2.数组 dp[j-nums[i]]+nums[i]
+  //3.初始化为0
+  //4.遍历顺序i正序遍历物品,traget是j倒序遍历
+  //5.实例
+
+  //看吧最后背包能背target吗也是j的最大值
+  let sum = nums.reduce((p, v) => p + v);
+  if (sum % 2 == 1) return false;
+  let target = sum / 2;
+  let dp = new Array(target + 1).fill(0);
+  for (let i = 0; i < nums.length; i++) {
+    for (j = target; j >= nums[i]; j--) {
+      dp[j] = Math.max(dp[j], dp[j - nums[i]] + nums[i]);
+    }
+  }
+  return target == dp[target];
+};
+```
