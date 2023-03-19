@@ -28,6 +28,8 @@
 - 背包如果正好装满，说明找到总和为 sum/2 的子集
 - 背包中每一个元素都是不可重复投放的
 
+物品的 value 相加是否等于 sum/2,且背包的容量也是 target
+
 动态规划五部曲如下
 
 1. 确定 dp 数组以及下标的含义
@@ -41,3 +43,35 @@
 本题，相当于背包里放入数值，那么物品 i 的重量是 nums[i]，其价值也是 nums[i]。
 
 所以递推公式：dp[j] = max(dp[j], dp[j - nums[i]] + nums[i]);
+
+3. 初始化都为 0
+
+4. 遍历顺序，物品外层是正序遍历，容量里层是倒序遍历
+
+```js
+for (let i = 0; i < weight.lenght; i++) {
+  for (let j = target; j >= nums[i]; j--) {
+    dp[j] = Math.max(dp[j], dp[j - nums[i]] + nums[i]);
+  }
+}
+```
+
+5. 举例推导 dp 数组
+   **dp[j]==j，说明集合中子集总和正好可以凑成总和 j,理解这一点很重要**
+
+## 代码
+
+```js
+var canPartition = function (nums) {
+  const sum = nums.reduce((p, v) => p + v);
+  if (sum % 2 == 1) return false;
+  let target = sum / 2;
+  let dp = new Array(target + 1);
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = target; j >= nums[i]; j++) {
+      dp[j] = Math.max(dp[j], dp[j - nums[i]] + nums[i]);
+    }
+  }
+  return dp[target] === target;
+};
+```
