@@ -64,7 +64,7 @@ function trap(height) {
   }
   maxRight[height.length - 1] = height[height.length - 1];
   for (let j = height.length - 2; j >= 0; j--) {
-    maxRight = Math.max(height[j], maxRight[i + 1]);
+    maxRight[j] = Math.max(height[j], maxRight[j+ 1]);
   }
   let sum = 0;
   for (let i = 0; i < height.length; i++) {
