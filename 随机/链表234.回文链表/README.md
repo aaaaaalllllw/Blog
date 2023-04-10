@@ -72,6 +72,6 @@ function reverse(head){
       cur=tmp
   }
   return pre
-}
+}   
     
 };
