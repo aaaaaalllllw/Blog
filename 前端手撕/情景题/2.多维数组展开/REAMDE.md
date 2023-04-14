@@ -36,7 +36,7 @@ function flatten(arr) {
 	let tmp = [];
 	for (let i of arr) {
 		if (Array.isArray(i)) {
-			tmp.conact(flatten(i));
+			tmp=tmp.conact(flatten(i));
 		} else {
 			tmp.push(i);
 		}
