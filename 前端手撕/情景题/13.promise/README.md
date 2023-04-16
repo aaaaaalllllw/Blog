@@ -305,6 +305,9 @@ class MyPromise {
 2. Promise.resolve().then 已经改变状态了只需执行 then 回调了
 
 ```js
+const PENDING = "pending";
+const FUlFILLED = "fulfilled";
+const REJECTED = "rejected";
 class MyPromise {
 	//构造方法接收一个回调
 	constructor(executor) {
