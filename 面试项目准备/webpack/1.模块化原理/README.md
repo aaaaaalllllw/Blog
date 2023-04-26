@@ -188,4 +188,236 @@ module.exports={
 ```
 
 
-# 七、模块化
+# 七、CommonJS模块化实现原理
+
+name.js
+
+```js
+module.exports="不要秃头啊"
+```
+
+main.js
+```js
+let author=require("./name.js")
+console.log(author,"author")
+```
+
+- name.js中有一个module对象，module对象上有exports属性，给exports属性赋值为"不要秃头啊"
+- main.js中，调用require函数，入参为模块路径(./name.js),最后返回值为module.exports
+
+
+- 设计这个运行流程
+
+```js
+var modules={
+    "./name.js":()=>{
+        var  module={};
+        module.exports="不要秃头"
+        return module.exports
+    }
+}
+
+var require=(modulePath)=>{
+    return modules[modulePath]()
+}
+
+let author=require("./name.js")
+console.log(author)
+
+```
+以上就是CommonJS能在浏览器中运行的核心思想
+接下来看看具体源码中实现(对打包后的内容进行调整优化)
+
+主要分为几个部分
+- 初始化:定义modules对象
+- 定义缓存对象cache
+- 定义加载模块函数require
+- 执行入口函数
+
+> 初始化定义modules对象
+```js
+//初始化:定义了一个对象modules，key为模块路径 value是一个函数，函数就是我们编写的代码
+var modules={
+    "./src/name.js":(module)=>{
+        module.exports="不要秃头啊"
+    }
+}
+```
+
+> 定义缓存对象cache
+
+```js
+var  cache={}
+```
+
+> 定义加载模块函数require
+
+require:接受模块的路径为参数，返回具体的模块的内容
+
+```js
+function require(modulePath){
+    var cacheModule=cache[modulePath]//获取模块缓存
+    if(cacheModule!=undefined){
+        //如果有缓存则不允许模块内容，直接return导出的值
+        return cachedModule.exports
+    }
+    //如果没有缓存，则定义module对象，定义exports属性
+    //注意module=cache[modulePath]代表引用的是同一个内存地址
+    var  module=(cache[modulePath]={
+        export:{}
+    })
+
+    //导入module.exports对象
+    return module.exports
+
+}
+```
+
+> 执行入口函数
+防止命名冲突，包装成一个立即执行函数
+```js
+(()=>{
+    let author=require("./src/main.js")
+    console.log(author,"author")
+})()
+
+```
+
+> 整体代码
+![这是图片](1.webp)
+
+```js
+//模块定义
+var modules={
+    "./src/name.js":(module)=>{
+        //要传递两次参数，第一次是path路径，第二次是module对象
+        module.exports="不要秃头啊"
+    }
+}
+var cache={}
+
+//接受模块的路径为参数，返回具体的模块的内容
+function require(modulePath){
+    var cachedModule=cache[modulePath];//获取模块路径
+    if(cacheModule!==undefined){
+        //如果有缓存则不允许模块内容，直接return导出结果
+        return cachedModule.exports
+    }
+    //如果没有缓存，则定义module对象，定义exports属性
+      //这里注意！！！module = cache[modulePath] 代表引用的是同一个内存地址
+      var module=(cache[modulePath]={
+        exports:{}
+      })
+
+      //运行模块内的代码，在模块代码中会给module.exports对象赋值
+  modules[modulePath](module, module.exports, require);
+
+  //导入module.exports对象
+  return module.exports; 
+
+}
+(() => {
+  let author = require("./src/name.js");
+  console.log(author, "author");
+})();
+```
+**var  module=(cache[modulePath]={
+        export:{}
+    }),module===cache[modulePath],其中有个export属性是一个对象**
+# 八、ES Module模块化原理
+
+name.js
+```js
+const author="不要秃头啊"
+
+export const age="18"
+
+export default author
+```
+
+main.js
+
+```js
+import author,{age} from "./name"
+
+console.log(author,"author")
+console.log(age,"age")
+```
+
+将name.js中导出的内容挂载到exports对象上,如果是通过export default
+方式导出的，那就在exports对象加一个default属性，将name.js导出内容变成这样：
+
+```js
+const exports={
+    age:"18",
+    default:"不要秃头啊”
+}
+```
+然后在模块引用(在Webpack编译时会将import author from “./name”)代码转换成
+const exports=require(./name),这样在main.js中拿到exports对象，就能够正常取值
+
+大致原理就是这么简单，只不过这里给exports赋值的方式是通过代理做到的。
+![这是图片](2.webp)
+
+```js
+//模块定义
+var modules = {
+  "./src/name.js": (module, exports, require) => {
+    //给该模块设置tag：标识这是一个ES Module
+    require.setModuleTag(exports);
+    //通过代理给exports设置属性值
+    require.defineProperty(exports, {
+      age: () => age,
+      default: () => DEFAULT_EXPORT,
+    });
+    const author = "不要秃头啊";
+    const age = "18";
+    const DEFAULT_EXPORT = author;
+  },
+};
+
+var cache = {};
+function require(modulePath) {
+  var cachedModule = cache[modulePath];
+  if (cachedModule !== undefined) {
+    return cachedModule.exports;
+  }
+  var module = (cache[modulePath] = {
+    exports: {},
+  });
+  modules[modulePath](module, module.exports, require);
+  return module.exports;
+}
+
+//对exports对象做代理
+require.defineProperty = (exports, definition) => {
+  for (var key in definition) {
+    Object.defineProperty(exports, key, {
+      enumerable: true,
+      get: definition[key],
+    });
+  }
+};
+
+//标识模块的类型为ES Module
+require.setModuleTag = (exports) => {
+  Object.defineProperty(exports, Symbol.toStringTag, {
+    value: "Module",
+  });
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true,
+  });
+};
+
+//以下是main.js编译后的代码
+//拿到模块导出对象exports
+var _name__WEBPACK_IMPORTED_MODULE_0__ = require("./src/name.js");
+
+console.log(_name__WEBPACK_IMPORTED_MODULE_0__["default"], "author");
+console.log(_name__WEBPACK_IMPORTED_MODULE_0__.age, "age");
+
+```
+
+1. 通过require.setModule函数来标识这是一个ES Module(在现在这个例子中其实没什么作用)
+2. 给传入的 exports 对象通过 Object.defineProperty 做了一层代理（这样当访问default属性时，其实访问的是DEFAULT_EXPORT变量，访问age属性时，访问的是age变量）。
