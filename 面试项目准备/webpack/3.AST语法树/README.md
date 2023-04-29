@@ -312,3 +312,82 @@ traverse(ast,{
 
 最后一步:新代码生成。**用信道AST，遍历每个节点，根据指定规则生成最终代码**
 
+
+
+
+# 四、AST的广泛应用
+
+
+Babel其实就是常用的JavaScript编译器，能转yi ES5以上的代码，使他在旧的浏览器
+或者环境中也能运行；工作过程分为三个部分】
+
+- Parse(解析)将源代码转化成抽象语法树，树上有很多estree节点
+- Transform(转化)对抽象语法树进行转化
+- Generate(代码生成)将上一步经过转化过的抽象语法生成新的代码
+
+可以借助babel插件
+
+- @babel/parser 可与将源码转换成AST
+- @babel/traverse 用于将AST的遍历，维护整课树的状态，并且负责替换、移除和添加节点
+- @babel/generate 可以把AST生成源码，同时生成sourceMap
+-  @babel/types用于 AST 节点的 Lodash 式工具库, 它包含了构造、验证以及变换 AST 节点的方法，对编写处理 AST 逻辑非常有用
+
+- @babel/core Babel 的编译器，核心 API 都在这里面，比如常见的 transform、parse，并实现了插件功能
+
+```js
+yarn add @babel/core -D //里面就包含了@babel/parser、@babel/traverse、@babel/generate、@babel/types等
+```
+
+## 4.1 小小实验
+
+```js
+const parser = require("@babel/parser");
+const traverse = require("@babel/traverse");
+const generator = require("@babel/generator");
+
+// 源代码
+const code = `
+const hello = () => {};
+`;
+
+// 1. 源代码解析成 ast
+const ast = parser.parse(code);
+
+// 2. 转换
+const visitor = {
+  // traverse 会遍历树节点，只要节点的 type 在 visitor 对象中出现，变化调用该方法
+  Identifier(path) {
+    const { node } = path; //从path中解析出当前 AST 节点
+    if (node.name === "hello") {
+      node.name = "world"; //找到hello的节点，替换成world
+    }
+  },
+};
+traverse.default(ast, visitor);
+
+// 3. 生成
+const result = generator.default(ast, {}, code);
+
+console.log(result.code); //const world = () => {};
+
+```
+
+## 4.2手撕babel插件
+
+```js
+yarn add babel-plugin-transform-es2015-arrow-functions -D
+
+const core = require("@babel/core"); //babel核心模块
+let arrowFunctionPlugin = require("babel-plugin-transform-es2015-arrow-functions"); //转换箭头函数插件
+
+let sourceCode = `
+const sum = (a, b) => {
+    return a + b;
+}
+`;
+let targetSource = core.transform(sourceCode, {
+  plugins: [arrowFunctionPlugin], //使用插件
+});
+
+console.log(targetSource.code);
+```
