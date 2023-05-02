@@ -1,0 +1,45 @@
+Arguments: 
+  D:\nodejs\node.exe D:\nodejs\node_global\node_modules\yarn\bin\yarn.js add webpackk
+
+PATH: 
+  C:\Program Files\Java\jdk1.8.0_231\bin;C:\Program Files\Java\jdk1.8.0_231\jre\bin;D:\nodejs\;C:\WINDOWS\system32;C:\Program Files\dotnet\;D:\nvm;C:\Program Files\nodejs;C:\Users\86181\AppData\Roaming\npm;C:\Users\86181\AppData\Local\Microsoft\WindowsApps;C:\Users\86181\.dotnet\tools;C:\Program Files\Azure Data Studio\bin;D:\nodejs\node_global;E:\Driver;D:\Microsoft VS Code\bin;D:\Program Files\Git\bin
+
+Yarn version: 
+  1.22.18
+
+Node version: 
+  14.18.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.npmmirror.com/webpackk: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (D:\nodejs\node_global\node_modules\yarn\lib\cli.js:141510:19)
+      at Object.onceWrapper (events.js:519:28)
+      at ClientRequest.emit (events.js:400:28)
+      at TLSSocket.emitRequestTimeout (_http_client.js:790:9)
+      at Object.onceWrapper (events.js:519:28)
+      at TLSSocket.emit (events.js:412:35)
+      at TLSSocket.Socket._onTimeout (net.js:495:8)
+      at listOnTimeout (internal/timers.js:557:17)
+      at processTimers (internal/timers.js:500:7)
+
+npm manifest: 
+  {
+    "name": "pack1.0",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

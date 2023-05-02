@@ -1,0 +1,1 @@
+{"version":3,"file":"main.js","mappings":";;;;;AAAA,aAAa,4D","sources":["webpack://loader/./src/index.js"],"sourcesContent":["const a = 1 ;//给你加点注释(来自于Aloader)//给你加点注释(来自于BLoader)//给你加点注释(来自于CLoader)"],"names":[],"sourceRoot":""}
