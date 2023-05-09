@@ -36,3 +36,6 @@ require("element-ui/lib/theme-chalk/button.css");
 ```
 
 冗余引入，实际只是部分解决了，它的 webpack 配置文件 externals,在 build/config.js
+
+
+来源掘金
