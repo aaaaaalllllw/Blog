@@ -18,3 +18,10 @@ function foo(){
 }
 
 foo()
+
+
+let myname="极客时间"
+{
+    console.log(mymyname)
+    let myname="极客邦"
+}
