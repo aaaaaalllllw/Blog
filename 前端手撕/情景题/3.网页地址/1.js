@@ -1,2 +1,4 @@
-var fileName = "https://www.baidu.com/index.html";
-console.log(fileName.substring(fileName.lastIndexOf(".") + 1));
+var str = "111.html";
+
+let string = str.substring(str.indexOf(".") + 1);
+console.log(string);

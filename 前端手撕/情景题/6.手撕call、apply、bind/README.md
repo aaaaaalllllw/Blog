@@ -106,7 +106,7 @@ console.log(min);
 ```
 
 ```js
-Function.prototype.myApply=function(context.args){
+Function.prototype.myApply=function(context,args){
     context=conetxt||window
     args=args||[]
 
