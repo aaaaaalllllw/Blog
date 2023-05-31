@@ -1,0 +1,15 @@
+{
+  "name": "pngquant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-pngquant-native": "^2.2.0"
+  }
+}
