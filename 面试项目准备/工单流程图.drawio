@@ -1,0 +1,85 @@
+<mxfile host="app.diagrams.net" modified="2024-04-30T09:10:44.670Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0" etag="e9JqSW9P8t-i-YSpNY42" version="24.3.1" type="github">
+  <diagram name="第 1 页" id="JPb9Xyj_Zy5FRoCMM1rY">
+    <mxGraphModel dx="1158" dy="1779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="A81NCQcHSRhenyB6z1lv-2" value="单个导入立即赠送，不存在分月" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="-270" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-11" value="查看工单" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="-190" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-12" value="进入工单明细（复制）空一行表明：&lt;font color=&quot;#ff511c&quot;&gt;暂未充值&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="-110" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-13" value="导入方式" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="300" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-16" value="发起部门+工单编号" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="450" y="-100" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-44" value="手工导入" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="400" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-45" value="批量导入，不想单个导入" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="400" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-46" value="进入cbss系统，话费赠送" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="500" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-47" value="查询手机号，填入信息（金额、统一账户、其他，备注、工单等等）" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="595" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-48" value="查询手机号是否充值成功" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="680" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-49" value="回复工单：已赠送" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="760" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-50" value="删除空行" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="840" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-51" value="做批量导入表，复制信息" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="500" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-52" value="重命名，当日日期+当日编号" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="610" y="505" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-53" value="进入cbss系统，批量导入" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="590" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-54" value="等导入，看失败信息" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="680" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-55" value="查失败" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="760" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-56" value="excel查重" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="-10" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-58" value="是否重复赠送" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="305" y="90" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-59" value="询问发起人" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="150" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-61" value="查号码" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="840" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-62" value="删除工单明细中的赠送，移入未赠送成功" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="930" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-63" value="回复工单：8点到帐，备注失败账号" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="1010" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-64" value="删除空行" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="1120" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A81NCQcHSRhenyB6z1lv-65" value="是" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="420" y="98" width="40" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
